@@ -1,0 +1,56 @@
+📐 Design Document
+1. System Architecture
+Inputs: Stock symbol →
+Agents Orchestrated in CrewAI (sequential workflow):
+1.	News & Info Researcher → gathers company news (DuckDuckGo).
+2.	Data Researcher → fetches company profile & income statements (Yahoo Finance).
+3.	Analyst → consolidates news + financials → structured analysis.
+4.	Financial Expert → generates recommendation → writes output.
+Outputs:
+•	Analysis.md – Detailed financial and contextual analysis.
+•	Recommendation.md – Buy/Hold/Sell recommendation with reasoning.
+________________________________________
+2. Components
+Agents
+•	News & Info Researcher
+•	Data Researcher
+•	Analyst
+•	Financial Expert
+Custom Tools
+•	get_current_stock_price(symbol)
+•	get_company_info(symbol)
+•	get_income_statements(symbol)
+•	search_tool(query)
+Tasks
+•	get_company_news (agent: News & Info Researcher)
+•	get_company_financials (agent: Data Researcher)
+•	analyse (agent: Analyst)
+•	advise (agent: Financial Expert)
+Crew Orchestration
+•	Framework: CrewAI (LangGraph)
+•	Process: Sequential execution (Process.sequential)
+•	Callback: Logs timestamps for observability
+Note: We will be using LangGraph in place of Crew
+________________________________________
+3. Data Flow
+1.	User inputs stock symbol.
+2.	News Agent → retrieves news articles.
+3.	Data Agent → fetches financials.
+4.	Analyst Agent → synthesizes data + news into analysis.
+5.	Financial Expert Agent → issues final recommendation.
+6.	CrewAI (LangGraph)→ orchestrates tasks → saves outputs to Markdown files.
+________________________________________
+4. Scalability & Extensibility
+•	Add new agents: e.g., Risk Manager, Compliance Checker, Sentiment Analyzer.
+•	Add new tools: e.g., Bloomberg/Reuters API, Twitter sentiment feed.
+•	UI options:
+o	Phase 1: CLI
+o	Phase 2: Streamlit / Web dashboard.
+________________________________________
+5. Future Enhancements
+•	Multi-stock batch processing.
+•	Portfolio-level recommendations.
+•	Real-time alerting for stock events.
+•	Integration with broker APIs (Robinhood, Zerodha).
+•	Reinforcement learning for improving recommendation quality.
+

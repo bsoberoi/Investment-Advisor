@@ -1,0 +1,13 @@
+# Multi Agent System using MCP
+
+1. Use an orchestration framework - LangGraph
+2. Agent Roles: 
+    1. Agent for gathering company news and information
+    2. Agent for gathering financial data
+    3. Agent for analyzing data
+    4. Agent for financial recommendations
+3. Tools: LangGraph, duckduckgo-search, Yahoo Finance, MCP
+4. LLM API - Groq
+5. Create two version for UI
+    1. Phase 1: CLI
+    2. Phase 2: Streamlit

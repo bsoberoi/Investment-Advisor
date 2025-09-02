@@ -1,0 +1,36 @@
+
+tmp/
+temp.json
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+.DS_Store
+test.ipynb
+
+temp.py
+temp.csv
+test.py
+
+/outputs
+__pycache__/
+/config/__pycache__/
+/agents/__pycache__/
+/tools/__pycache__/
+/tasks/__pycache__/
+/graphs/__pycache__/
+/ui/__pycache__/
+
+

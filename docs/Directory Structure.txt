@@ -1,0 +1,62 @@
+📂 Investment Advisor Multi-Agent System (LangGraph) Directory Structure
+investment-advisor/
+│── README.md                        # Project overview & setup instructions
+│── requirements.txt                 # Dependencies (langgraph, langchain, yfinance, etc.)
+│── .env                             # API keys (OpenAI, etc.)
+│── main.py                          # Entry point (CLI/Streamlit app)
+│
+├── config/                          # Configuration files
+│   ├── settings.py                  # Global configs (API keys, constants, model choice)
+│   └── logging_config.py            # Logging setup
+│
+├── agents/                          # Agent definitions
+│   ├── __init__.py
+│   ├── news_agent.py                # News & Info Researcher
+│   ├── data_agent.py                # Data Researcher
+│   ├── analyst_agent.py             # Data Analyst
+│   └── financial_expert_agent.py    # Financial Expert
+│
+├── tools/                           # Custom tools and API integrations
+│   ├── __init__.py
+│   ├── search_tool.py               # DuckDuckGo wrapper
+│   ├── finance_tools.py             # Yahoo Finance APIs (price, statements, info)
+│   └── utils.py                     # Helper functions (retry, error handling)
+│
+├── tasks/                           # Task definitions (nodes in LangGraph)
+│   ├── __init__.py
+│   ├── news_task.py                 # Gather company news
+│   ├── financials_task.py           # Gather financial data
+│   ├── analysis_task.py             # Perform analysis
+│   └── recommendation_task.py       # Generate recommendations
+│
+├── graphs/                          # LangGraph workflow definitions
+│   ├── __init__.py
+│   ├── investment_graph.py          # Graph connecting agents/tasks
+│   └── execution.py                 # Graph runner (kickoff, monitoring)
+│
+├── outputs/                         # Generated results
+│   ├── analysis/                    # Analysis reports
+│   ├── recommendations/             # Buy/Hold/Sell outputs
+│   └── logs/                        # Execution logs
+│
+├── tests/                           # Unit and integration tests
+│   ├── test_agents.py
+│   ├── test_tools.py
+│   ├── test_tasks.py
+│   └── test_graph.py                # End-to-end LangGraph workflow test
+│
+└── ui/                              # Optional user interfaces
+    ├── cli.py                       # CLI entrypoint
+    └── app.py                       # Streamlit/Web app for interactive use
+
+⚙️ Key Adaptations for LangGraph
+
+graphs/ replaces crew/ → This is where you define and wire up nodes (tasks/agents) and edges (execution flow) in LangGraph.
+
+Tasks = nodes → Each task_*.py file maps to a LangGraph node.
+
+Execution flow in investment_graph.py → Defines how tasks connect (sequential, conditional, or parallel).
+
+execution.py handles graph kickoff, observability (callbacks, logging), and error handling.
+
+Modular design → You can easily add new graphs (e.g., risk_graph.py, portfolio_graph.py).
