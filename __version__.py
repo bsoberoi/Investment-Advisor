@@ -4,17 +4,17 @@ Version information for Investment Advisor Multi-Agent System.
 
 __version__ = "1.0.0"
 __version_info__ = (1, 0, 0)
-__build__ = "2025-01-01"
+__build__ = "2025-09-01"
 __author__ = "Investment Advisor Team"
 __email__ = "team@investment-advisor.com"
 __description__ = "AI-powered investment advisory system with multi-agent architecture"
 __license__ = "MIT"
-__url__ = "https://github.com/your-org/investment-advisor"
+__url__ = "https://github.com/bsoberoi/investment-advisor"
 
 # Version history
 VERSION_HISTORY = {
     "1.0.0": {
-        "date": "2025-01-01",
+        "date": "2025-09-01",
         "changes": [
             "Initial release",
             "Multi-agent architecture with LangGraph",

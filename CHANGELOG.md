@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved section extraction methods to return empty strings instead of "not found" messages
 - Enhanced execution formatting to skip empty or error-filled sections
 
-## [1.0.0] - 2025-01-01
+## [1.0.0] - 2025-09-01
 
 ### Added
 - Initial release of Investment Advisor Multi-Agent System
@@ -102,7 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Key Features |
 |---------|------|--------------|
-| 1.0.0 | 2025-01-01 | Initial release with multi-agent architecture, GROQ integration, and comprehensive analysis |
+| 1.0.0 | 2025-09-01 | Initial release with multi-agent architecture, GROQ integration, and comprehensive analysis |
 
 ## Future Roadmap
 
