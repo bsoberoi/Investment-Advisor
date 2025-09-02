@@ -5,8 +5,30 @@ from typing import Optional
 # Load environment variables
 load_dotenv()
 
+# Import version information
+try:
+    from __version__ import get_version, get_build_info
+except ImportError:
+    # Fallback if version file is not available
+    def get_version():
+        return "unknown"
+    
+    def get_build_info():
+        return {
+            "version": "unknown",
+            "build_date": "unknown",
+            "author": "unknown",
+            "description": "unknown",
+            "license": "unknown",
+            "url": "unknown"
+        }
+
 class Settings:
     """Global configuration settings for the Investment Advisor system."""
+    
+    # Version Information
+    VERSION: str = get_version()
+    BUILD_INFO: dict = get_build_info()
     
     # Groq Configuration
     GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")

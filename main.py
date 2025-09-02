@@ -20,6 +20,19 @@ from config.settings import settings
 from config.logging_config import setup_logging, get_logger
 from graphs.execution import GraphExecutor
 
+# Import version information
+try:
+    from __version__ import get_version, get_build_info, format_version_info
+except ImportError:
+    def get_version():
+        return "unknown"
+    
+    def get_build_info():
+        return {"version": "unknown", "build_date": "unknown", "author": "unknown"}
+    
+    def format_version_info():
+        return "Investment Advisor Multi-Agent System\nVersion: unknown"
+
 # Setup logging
 setup_logging()
 logger = get_logger(__name__)
@@ -197,6 +210,18 @@ def check_status(symbol: str):
         print(f"❌ Error checking status: {e}")
         logger.error(f"Error checking status: {e}")
 
+def show_version():
+    """Display version information."""
+    try:
+        print("📋 Investment Advisor Multi-Agent System")
+        print("=" * 50)
+        print(format_version_info())
+        print("🔗 For more information, visit: https://github.com/your-org/investment-advisor")
+        print("📄 For changelog, see: CHANGELOG.md")
+    except Exception as e:
+        print(f"❌ Error displaying version: {e}")
+        logger.error(f"Error displaying version: {e}")
+
 def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -207,19 +232,21 @@ Examples:
   python main.py analyze AAPL                    # Analyze Apple stock
   python main.py analyze AAPL "Apple Inc."      # Analyze with company name
   python main.py status AAPL                    # Check analysis status
+  python main.py version                         # Show version information
   python main.py --help                         # Show this help message
         """
     )
     
     parser.add_argument(
         'command',
-        choices=['analyze', 'status'],
+        choices=['analyze', 'status', 'version'],
         help='Command to execute'
     )
     
     parser.add_argument(
         'symbol',
-        help='Stock symbol to analyze (e.g., AAPL)'
+        nargs='?',
+        help='Stock symbol to analyze (e.g., AAPL) - not required for version command'
     )
     
     parser.add_argument(
@@ -239,11 +266,19 @@ Examples:
     
     # Execute command
     if args.command == 'analyze':
+        if not args.symbol:
+            print("❌ Error: Stock symbol is required for analyze command")
+            sys.exit(1)
         results = analyze_stock(args.symbol, args.company_name)
         if results:
             display_summary(results, args.symbol)
     elif args.command == 'status':
+        if not args.symbol:
+            print("❌ Error: Stock symbol is required for status command")
+            sys.exit(1)
         check_status(args.symbol)
+    elif args.command == 'version':
+        show_version()
 
 if __name__ == "__main__":
     main()
